@@ -52,12 +52,12 @@ def plot_knn(nb_neighbors=n, nn_list=[], train_list=[], test_list=[], max_nn=20)
     # PLOT CONTOUR CLASSIFIER, DECISION BOUNDARY, TRAIN AND TEST DATA
     cb = ax1.contourf(xx, yy, Z, levels=10, cmap=cm, alpha=0.8)
     ax1.contour(xx, yy, Z, levels=[.5], colors='k', linestyles='dashed', linewidths=2)
-    ax1.scatter(X_train[:, 0], X_train[:, 1], c=y_train, cmap=cm_bright, edgecolors='k', linewidth=2, label="Train data")
-    ax1.scatter(X_test[:, 0], X_test[:, 1], c=y_test, cmap=cm_bright, edgecolors='k', alpha=0.6, label="Test data")
+    ax1.scatter(X_train[:, 0], X_train[:, 1], c=y_train, cmap=cm_bright, edgecolors='k', marker='o', s=100, linewidth=2, label="Train data")
+    ax1.scatter(X_test[:, 0], X_test[:, 1], c=y_test, cmap=cm_bright, edgecolors='k',marker='^', s=100, linewidth=2, label="Test data")
 
     # PLOT METRICS VS NB NEIGHBORS
     ax2.plot(nn_list, train_list, marker='o', markersize=10, color='k', label="Train accuracy")
-    ax2.plot(nn_list, test_list, marker='x', markersize=10, color='r', label="Test accuracy")
+    ax2.plot(nn_list, test_list, marker='^', markersize=10, color='r', label="Test accuracy")
 
     # COLORBAR, AXIS LIMITS, TITLE
     cbar = plt.colorbar(cb, ticks=[0, 1])

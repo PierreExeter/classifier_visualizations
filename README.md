@@ -34,8 +34,6 @@ python 2_simple_plot_KNN.py
 
 ## Effect of the number of neighbors
 
-
-
 Changing the number of neighbors can have a significant effect on the test accuracy and may cause overfitting.
 
 ```bash
@@ -43,3 +41,7 @@ python 3_nb_neighbors_effect.py
 ```
 
 <img src="plots/nb_neighbors.gif"/>
+
+The mode is overfitting for low number of neighbors as the train accuracy is marginally higher than the test accuracy (i.e. the model does not generalise to unseen data). The best number of neighbors is 14 for this particular dataset.
+
+## Effect of the dataset size

@@ -40,8 +40,8 @@ cm_bright = ListedColormap([first, last])
 # PLOT CONTOUR CLASSIFIER, DECISION BOUNDARY, TRAIN AND TEST DATA
 cb = ax.contourf(xx, yy, Z, levels=10, cmap=cm, alpha=0.8)
 ax.contour(xx, yy, Z, levels=[.5], colors='k', linestyles='dashed', linewidths=2)
-ax.scatter(X_train[:, 0], X_train[:, 1], c=y_train, cmap=cm_bright, edgecolors='k', linewidth=2, label="Train data")
-ax.scatter(X_test[:, 0], X_test[:, 1], c=y_test, cmap=cm_bright, edgecolors='k', alpha=0.6, label="Test data")
+ax.scatter(X_train[:, 0], X_train[:, 1], c=y_train, cmap=cm_bright, edgecolors='k', marker='o', s=100, linewidth=2, label="Train data")
+ax.scatter(X_test[:, 0], X_test[:, 1], c=y_test, cmap=cm_bright, edgecolors='k',marker='^', s=100, linewidth=2, label="Test data")
 
 # COLORBAR, AXIS LIMITS, TITLE
 fs = 15
