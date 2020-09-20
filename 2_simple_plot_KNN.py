@@ -12,15 +12,6 @@ X, y = make_moons(n_samples=100, noise=0.3, random_state=0)
 X = StandardScaler().fit_transform(X)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=.4, random_state=42)
 
-# DEFINE CLASSIFIER, FIT AND COMPUTE METRICS
-name_clf = "KNeighborsClassifier"
-clf = KNeighborsClassifier(3)
-clf.fit(X_train, y_train)
-train_accuracy = clf.score(X_train, y_train)
-test_accuracy = clf.score(X_test, y_test)
-train_str = str(round(train_accuracy, 2))
-test_str = str(round(test_accuracy, 2))
-
 # DEFINE MESH GRID
 h = .02  # step size of the mesh
 x_min, x_max = X[:, 0].min() - .5, X[:, 0].max() + .5
@@ -28,6 +19,13 @@ y_min, y_max = X[:, 1].min() - .5, X[:, 1].max() + .5
 
 xx, yy = np.meshgrid(np.arange(x_min, x_max, h),
                      np.arange(y_min, y_max, h))
+
+# DEFINE CLASSIFIER, FIT AND COMPUTE METRICS
+name_clf = "KNeighborsClassifier"
+clf = KNeighborsClassifier(3)
+clf.fit(X_train, y_train)
+train_accuracy = round(clf.score(X_train, y_train), 2)
+test_accuracy = round(clf.score(X_test, y_test), 2)
 
 # PREDICT PROBABILITY CLASSIFIER
 Z = clf.predict_proba(np.c_[xx.ravel(), yy.ravel()])[:, 1]
@@ -48,15 +46,14 @@ ax.scatter(X_test[:, 0], X_test[:, 1], c=y_test, cmap=cm_bright, edgecolors='k',
 # COLORBAR, AXIS LIMITS, TITLE
 fs = 15
 cbar = plt.colorbar(cb, ticks=[0, 1])
-cbar.ax.set_yticklabels(['0', '1'], fontsize=fs)
 ax.legend(fontsize=fs, loc='upper left')
 ax.set_xlim(xx.min(), xx.max())
 ax.set_ylim(yy.min(), yy.max())
-ax.set_xlabel("$X_1$")
-ax.set_ylabel("$X_2$")
+ax.set_xlabel("$X_1$", fontsize=fs)
+ax.set_ylabel("$X_2$", fontsize=fs)
 ax.set_xticks(())
 ax.set_yticks(())
-title_str = name_clf+' | Train accuracy: '+str(train_str)+' | Test accuracy: '+test_str
+title_str = f"KNeighborsClassifier({clf.n_neighbors}) | Train accuracy: {train_accuracy} | Test accuracy: {test_accuracy}"
 ax.set_title(title_str, fontsize=fs)
 
 # SAVE FIGURE
