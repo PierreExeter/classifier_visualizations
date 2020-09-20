@@ -56,8 +56,8 @@ def plot_knn(nb_neighbors=n, nn_list=[], train_list=[], test_list=[], max_nn=20)
     ax1.scatter(X_test[:, 0], X_test[:, 1], c=y_test, cmap=cm_bright, edgecolors='k', alpha=0.6, label="Test data")
 
     # PLOT METRICS VS NB NEIGHBORS
-    ax2.plot(nn_list, train_list, marker='x', color='k', label="Train accuracy")
-    ax2.plot(nn_list, test_list, marker='x', color='r', label="Test accuracy")
+    ax2.plot(nn_list, train_list, marker='o', markersize=10, color='k', label="Train accuracy")
+    ax2.plot(nn_list, test_list, marker='x', markersize=10, color='r', label="Test accuracy")
 
     # COLORBAR, AXIS LIMITS, TITLE
     cbar = plt.colorbar(cb, ticks=[0, 1])
@@ -77,7 +77,7 @@ def plot_knn(nb_neighbors=n, nn_list=[], train_list=[], test_list=[], max_nn=20)
 
     title_str = f"KNeighborsClassifier({clf.n_neighbors}) | Train accuracy: {train_accuracy} | Test accuracy: {test_accuracy}"
     plt.suptitle(title_str, fontsize=fs)
-    # plt.tight_layout()
+    fig.tight_layout(rect=[0, 0.03, 1, 0.95])
 
 
 # Test plot (Comment if not needed, else it will mess up the accuracy plot)
@@ -92,6 +92,5 @@ max_nn = 40
 for n in range(1, max_nn):
     frame = plot_knn(nb_neighbors=n, max_nn=max_nn)
     frames.append(frame)
-
 
 gif.save(frames, "plots/nb_neighbors.gif", duration=1, unit='s')
